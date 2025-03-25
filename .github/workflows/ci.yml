@@ -28,8 +28,8 @@ jobs:
       - name: Install dependencies
         run: |
           go mod download
-          apt update
-          apt install make -y
+          sudo apt update
+          sudo apt install make -y
 
       - name: Run tests with coverage
         run: make coverage
@@ -54,8 +54,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          apt update
-          apt install make -y
+          sudo apt update
+          sudo apt install make -y
           go mod download
           go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
