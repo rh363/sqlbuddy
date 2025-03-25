@@ -1,0 +1,34 @@
+# GoReleaser configuration for SQLBuddy pre-releases
+project_name: sqlbuddy
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - skip: true  # Skip binary builds as this is a library
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - Merge pull request
+      - Merge branch
+
+checksum:
+  name_template: 'checksums.txt'
+
+release:
+  github:
+    owner: "{{ .Env.GITHUB_REPOSITORY_OWNER }}"
+    name: "{{ .Env.GITHUB_REPOSITORY }}"
+  prerelease: true
+  draft: false
+  name_template: "SQLBuddy {{.Env.PRERELEASE_VERSION}}"
+  header: |
+    ## SQLBuddy {{.Env.PRERELEASE_VERSION}} (Release Candidate)
+    
+    This is a pre-release version of SQLBuddy.
+    Please test and provide feedback before the final release.
