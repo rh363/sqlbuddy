@@ -9,13 +9,7 @@ builds:
   - skip: true  # Skip binary builds as this is a library
 
 changelog:
-  sort: asc
-  filters:
-    exclude:
-      - '^docs:'
-      - '^test:'
-      - Merge pull request
-      - Merge branch
+  use: github-native
 
 checksum:
   name_template: 'checksums.txt'
@@ -26,3 +20,5 @@ release:
   prerelease: auto
   draft: false
   name_template: "SQLBuddy v{{.Version}}"
+  extra_files:
+    - glob: ./Changelog.md
